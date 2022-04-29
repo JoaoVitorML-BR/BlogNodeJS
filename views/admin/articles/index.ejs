@@ -1,0 +1,49 @@
+<%- include('../../partials/head.ejs')  %> 
+<%- include('../../partials/navbar.ejs')  %> 
+
+<div class="container">
+    <hr>
+    <h2>Artigos</h2>
+    <a class="btn btn-primary" href="/admin/articles/new">Criar novo artigo</a>
+    <hr>
+    <table class="table table-bordered" >
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>titulo</th>
+                <th>slug</th>
+                <th>Category</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% articles.forEach(article => { %>
+            <tr>
+                <td><%= article.id %></td>
+                <td><%= article.title %></td>
+                <td><%= article.slug %></td>
+                <td><%= article.category.title %></td>
+                <td>   
+                    <!--Form to get action to delete category-->
+                    <form method="POST" action="/articles/delete" style="display: inline;" onsubmit="confirmDelete(event, this)">
+                        <input type="hidden" name="id" value="<%= article.id %>">
+                        <button class="btn btn-danger">Deletar</button>
+                    </form></td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+</div>
+
+<%- include('../../partials/footer.ejs') %>
+
+<!--Confirm if you realy want delete. "this protects you from accidentally deleting"-->
+<script>
+    function confirmDelete(event, form){
+        event.preventDefault();
+        var decision = confirm('Você deseja realemente deletar?');
+        if(decision){
+            form.submit();
+        }
+    }
+</script>

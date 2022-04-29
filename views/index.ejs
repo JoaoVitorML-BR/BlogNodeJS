@@ -1,0 +1,27 @@
+<%- include('partials/head.ejs')  %> 
+<%- include('partials/homenavbar.ejs')  %> 
+<body>
+    <div class="container">
+        <hr>
+        <div class="jumbotron">
+            <h1 class="display-4">Bem-vindo</h1>
+            <p class="lead">Este é um blog que fiz para treinar</p>
+            <hr class="my-4">
+            <p>Descrição detalhada aqui!</p>
+            <a class="btn btn-primary btn-lg" href="#" role="button">Leia mais</a>
+    </div>
+    <br>
+        <% articles.forEach(article => { %>
+            <div class="card">
+                <div class="card-header">
+                    <h2><%= article.title %></h2>
+                </div>
+                <br>
+                <div class="card-body">
+                    <button href="/<%= article.slug %>" class="btn btn-primary">Ler artigo</button>
+                </div>
+                <br>
+            </div>
+        <% }); %>
+</body>
+<%- include('partials/footer.ejs') %>
