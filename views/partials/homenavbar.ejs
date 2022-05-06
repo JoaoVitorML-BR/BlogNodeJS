@@ -3,10 +3,14 @@
     <a class="navbar-brand" href="/" style="text-align:center">
         João Vitor
     </a>
+    <li class="nav-item">
+        <a  class="nav-link" href="/" style="text-align:left">Home</a>
+    </li>
     <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-            <a  class="nav-link" href="/" style="text-align:left">Home</a>
-        </li>
+        <% categories.forEach(category => { %>
+            <li class="nav-item">
+                <a  class="nav-link" href="/category/<%= category.slug %>"><%= category.title %></a>
+            </li>
+        <% }); %>  
     </ul>
-   
 </nav>

@@ -28,13 +28,20 @@ connection
 // Servidor Starting / running
 
 app.get('/', (req, res) => {
-    Article.findAll().then(articles => { // searching the files/data
-        res.render('index', {articles: articles}); // send to frontend the files/data
+    Article.findAll({
+        order: [
+            ['id','DESC']
+        ]
+    }).then(articles => { // searching the files/data
+
+        Category.findAll().then(categories => {
+            res.render('index', {articles: articles, categories: categories}); // send to frontend the files/data
+        });
     })
     
 });
 
-app.get('/slug', (req, res) => {
+app.get('/:slug', (req, res) => {
     var slug = req.params.slug;
 
     Article.findOne({
@@ -43,13 +50,35 @@ app.get('/slug', (req, res) => {
         }
     }).then(article => {
         if(article != undefined){
-            res.render('article',{article: article})
+            Category.findAll().then(categories => {
+                res.render('article', {article: article, categories: categories}); // send to frontend the files/data
+            });
         }else{
             res.redirect('/')
         }
     }).catch(e => {
         res.redirect('/')
     });
+});
+
+app.get("/category/:slug",(req, res) => {
+    var slug = req.params.slug;
+    Category.findOne({
+        where: {
+            slug: slug
+        },
+        include: [{model: Article}] // when you search for x category it returns everything in it
+    }).then( category => {
+        if(category != undefined){
+            Category.findAll().then(categories => {
+                res.render("index",{articles: category.articles,categories: categories});
+            });
+        }else{
+            res.redirect("/");
+        }
+    }).catch( e => {
+        res.redirect("/");
+    })
 });
 
 app.use('/', categoriesController);
