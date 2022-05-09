@@ -31,7 +31,8 @@ app.get('/', (req, res) => {
     Article.findAll({
         order: [
             ['id','DESC']
-        ]
+        ],
+        limit: 4
     }).then(articles => { // searching the files/data
 
         Category.findAll().then(categories => {

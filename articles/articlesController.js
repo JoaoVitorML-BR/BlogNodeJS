@@ -103,7 +103,10 @@ router.get('/articles/page/:num', (req, res) => {
     // this is the same thing as findAll but this returns the count
     Article.findAndCountAll({
         limit: 4,
-        offset: offset
+        offset: offset,
+        order: [
+            ['id','DESC']
+        ]
     }).then(articles => {
         var next;
         if(offset + 4 >= articles.count){ // if the offset + the number of elements on the page is greater than the number of articles, it means that I have exceeded the number of articles and there are no articles to be displayed anymore.
@@ -112,12 +115,14 @@ router.get('/articles/page/:num', (req, res) => {
             next = true; // means there is a next page to be displayed
         }
         var result = {
+            page: parseInt(page),
             next: next,
             articles: articles
         }
 
-        res.json(result); // returns a json response to the browser
+        Category.findAll().then(categories => {
+            res.render('admin/articles/page', {result: result, categories: categories})
+        })
     })
-
 })
 module.exports = router;   
