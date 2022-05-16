@@ -2,16 +2,26 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const connection = require('./database/database');
+const session = require('express-session');
 
+// controllers
 const categoriesController = require('./categories/categoriesController');
 const articlesController = require('./articles/articlesController');
+const userController = require('./user/userController');
 
+// execute Data
 const Article = require('./articles/Article');
 const Category = require('./categories/Category');
+const user = require('./user/User');
 
 // View Engine
 app.set('view engine', 'ejs');
 
+// session
+app.use(session({
+    secret: 'qualquercoisa',
+    cookie: {maxAge: 30000}
+}))
 // Static
 app.use(express.static('public'));
 
@@ -82,8 +92,17 @@ app.get("/category/:slug",(req, res) => {
     })
 });
 
+app.get('/session', (req, res) => {
+    req.session.treinamento = 'heheheh'
+});
+
+app.get('leitura', (req, res) => {
+
+});
+
 app.use('/', categoriesController);
 app.use('/',articlesController); 
+app.use('/', userController);
 
 app.listen(8080, () => {
     console.log('Servidor rodando na porta: http://localhost:8080');
