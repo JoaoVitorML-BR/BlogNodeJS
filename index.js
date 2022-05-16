@@ -14,6 +14,10 @@ const Article = require('./articles/Article');
 const Category = require('./categories/Category');
 const user = require('./user/User');
 
+app.use('/', categoriesController);
+app.use('/',articlesController); 
+app.use('/', userController);
+
 // View Engine
 app.set('view engine', 'ejs');
 
@@ -99,10 +103,6 @@ app.get('/session', (req, res) => {
 app.get('leitura', (req, res) => {
 
 });
-
-app.use('/', categoriesController);
-app.use('/',articlesController); 
-app.use('/', userController);
 
 app.listen(8080, () => {
     console.log('Servidor rodando na porta: http://localhost:8080');

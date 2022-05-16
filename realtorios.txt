@@ -1,2 +1,0 @@
-Rota de login precisa ser ajustada, ultima implementação feita
-porém sem sucesso, ela está retornando para a /, verificar oque houve.
