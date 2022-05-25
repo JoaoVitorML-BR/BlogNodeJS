@@ -1,7 +1,7 @@
 # Blog do João
 	
 
-<img align="center" alt="perguntaserespostas" height="160" width="380" src="./public/img/preguntaserespostas.png"><br>
+<img align="center" alt="perguntaserespostas" height="160" width="380" src="./public/img/blog.jpg"><br>
 
 - 	Esse Blog foi feito usando as seguintes tecnologias: JavaScript, NodeJS, Express, Sequelize, Banco de dados MySQL, EJS. 
 
@@ -18,8 +18,8 @@
 
 - 	Para configurar o seu banco de dados MySQL você irá precisar installar o MySQL e o MySQL workbench.
 - 	irei te recomendar 2 videos para isso, são eles:
-- 		Windows: <a href="https://www.youtube.com/watch?v=fmerTu7dWk8&t=327s&ab_channel=B%C3%B3sonTreinamentos">Link</a>
-- 		Linux: <a href="https://www.youtube.com/watch?v=CBK7c1xp-zI&list=LL&index=11&ab_channel=B%C3%B3sonTreinamentos">Link</a>
+      Windows: <a href="https://www.youtube.com/watch?v=fmerTu7dWk8&t=327s&ab_channel=B%C3%B3sonTreinamentos">Link</a>
+      Linux: <a href="https://www.youtube.com/watch?v=CBK7c1xp-zI&list=LL&index=11&ab_channel=B%C3%B3sonTreinamentos">Link</a>
       
 ## Configurando o Banco MySQL  
   - Para configurar o Banco MySQL com o sequelize iremos abrir o nosso MySQL-Workbench e criar um novo schema.<br>
